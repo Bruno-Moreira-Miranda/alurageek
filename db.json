@@ -1,0 +1,85 @@
+{
+  "produtos": [
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "star_wars",
+      "nome": "fdsfs",
+      "preco": "32",
+      "descricao": "fdssd",
+      "id": 1
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "star_wars",
+      "nome": "fdsfseeeee",
+      "preco": "213",
+      "descricao": "ds",
+      "id": 2
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "star_wars",
+      "nome": "efwss",
+      "preco": "0.18",
+      "descricao": "aaaaaaa",
+      "id": 3
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "star_wars",
+      "nome": "fklnsldjf",
+      "preco": "3242",
+      "descricao": "aaaaaaaaaa",
+      "id": 4
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "a",
+      "nome": "pppp",
+      "preco": "1",
+      "descricao": "a",
+      "id": 5
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "a",
+      "nome": "i",
+      "preco": "01",
+      "descricao": "s",
+      "id": 6
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "dafd",
+      "nome": "dsfdf",
+      "preco": "232",
+      "descricao": "dffd",
+      "id": 7
+    },
+    {
+      "imgUrl": "http://localhost:3000/administracao/adicionar-produto",
+      "categoria": "star_wars",
+      "nome": "aaaaaaaaaaaa",
+      "preco": "333",
+      "descricao": "a",
+      "id": 8
+    }
+  ],
+  "cadastros": [
+    {
+      "email": "admin@gmail.com",
+      "senha": "admin",
+      "id": 1
+    },
+    {
+      "email": "user1@gmail.com",
+      "senha": "user1",
+      "id": 2
+    },
+    {
+      "email": "user2@gmail.com",
+      "senha": "user2",
+      "id": 3
+    }
+  ]
+}

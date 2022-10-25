@@ -1,0 +1,43 @@
+.banner {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    row-gap: .5rem;
+    
+    height: 12rem;
+
+    color: var(--branco);
+
+    background-image: url(/public/assets/images/banner.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.banner h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+    .banner h2 {
+        font-size: 3rem;
+    }
+
+    .banner p {
+        font-size: 1.25rem;
+    }
+
+    .banner {
+        height: 19rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .banner {
+        height: 23rem;
+
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}

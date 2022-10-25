@@ -1,0 +1,44 @@
+/*=============== vars ===============*/
+.searchBar {
+    --padding-h: 2rem;
+}
+/*=============== vars - end ===============*/
+
+.searchBar {
+    background-color: var(--cinza-claro-1);
+    border-radius: 20px;
+    padding: .5rem var(--padding-h);
+
+    width: 100%;
+}
+
+.searchInputContainer {
+    position: relative;
+
+    width: 100%;
+}
+
+.searchInput__input {
+    width: calc(100% - 1rem);
+    margin-right: .75rem;
+}
+
+.searchInput__placeholder {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+
+    white-space: nowrap;
+    cursor: text;
+}
+
+.searchInput__input:not(:placeholder-shown) + .searchInput__placeholder {
+    display: none;
+}
+
+@media screen and (min-width: 1440px) {
+    .searchBar {
+        padding: .75rem var(--padding-h);
+    }
+}

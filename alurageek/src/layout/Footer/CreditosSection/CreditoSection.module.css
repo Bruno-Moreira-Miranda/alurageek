@@ -1,0 +1,10 @@
+.creditoSection {
+    background-color: var(--branco);
+}
+
+@media screen and (min-width: 1440px) {
+    .creditoSection {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }    
+}

@@ -1,0 +1,32 @@
+.gap-1 {
+    gap: 1rem;
+}
+
+.section-gap-1 {
+    row-gap: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+    .section-gap-1 {
+        row-gap: 4rem;
+    }
+}
+/*============ column-gap ============*/
+.gap-cl-1 {
+    column-gap: 1rem;
+}
+
+.gap-cl-05 {
+    column-gap: .5rem;
+}
+/*============ column-gap - end ============*/
+
+/*============ row-gap ============*/
+.gap-rw-1 {
+    row-gap: 1rem;
+}
+
+.gap-rw-05 {
+    row-gap: .5rem;
+}
+/*============ row-gap - end ============*/

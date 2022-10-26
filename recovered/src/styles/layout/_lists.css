@@ -1,8 +1,0 @@
-.flex-list {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flex-list--column {
-    flex-flow: column;
-}

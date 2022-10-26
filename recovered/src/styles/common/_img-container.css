@@ -1,8 +1,0 @@
-.img-container {
-    display: inline-block;
-}
-
-.img-container img {
-    object-fit: cover;
-    object-position: center;
-}

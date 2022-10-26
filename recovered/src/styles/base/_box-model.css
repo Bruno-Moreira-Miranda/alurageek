@@ -1,3 +1,0 @@
-*:not(:root, html, body), ::before, ::after {
-    box-sizing: border-box;
-}

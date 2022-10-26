@@ -1,0 +1,5 @@
+.singup {}
+
+.singup :global(.text-input) {
+    margin-bottom: 1rem;
+}

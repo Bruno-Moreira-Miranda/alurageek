@@ -1,0 +1,16 @@
+.loginButton {
+    padding: .75rem 2rem;
+}
+
+@media screen and (min-width: 768px) {
+    .loginButton {
+        padding: .75rem 3.5rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .loginButton {
+        font-size: 1.2rem;
+        padding: .85rem 5rem;
+    }
+}

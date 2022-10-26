@@ -1,0 +1,50 @@
+.produto-card {
+    position: relative;
+
+    display: grid;
+    grid-template-rows: 10.875rem;
+    grid-auto-rows: min-content;
+
+    row-gap: .5rem;
+
+    color: var(--cinza-escuro);
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.produto-card__nome {
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+.produto-card__preco {
+    font-weight: 700;
+}
+
+.produto-card__descricao {
+    font-size: .875rem;
+    line-height: 1.2rem;
+    font-weight: 400;
+}
+
+.produto-card__code {
+    font-size: .875rem;
+}
+
+.produto-card__acoes {
+    position: absolute;
+    right: .75rem;
+    top: .75rem;
+
+    display: flex;
+    align-items: center;
+    column-gap: 1.25rem;
+}
+
+.produto-card__acoes > * {
+    width: 1.175rem;
+    height: 1.175rem;
+
+    cursor: pointer;
+}

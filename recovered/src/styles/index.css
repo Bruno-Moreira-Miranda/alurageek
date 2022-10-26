@@ -1,0 +1,39 @@
+/*imports - init*/
+
+/*base*/
+@import "base/__index.css";
+
+/*components*/
+@import "components/__index.css";
+
+/*common*/
+@import "common/__index.css";
+
+/*layout*/
+@import "layout/__index.css";
+
+/*utils*/
+@import "utils/__index.css";
+
+/*imports - ends*/
+
+#root {
+    background-color: var(--cinza-claro-1);
+
+    display: grid;
+    align-content: flex-start;
+    justify-content: stretch;
+
+    scroll-behavior: smooth;
+
+    height: fit-content;
+}
+
+:focus {
+    outline: solid rgb(227, 9, 96) 2px;
+    outline-offset: 1px;
+}
+
+button {
+    cursor: pointer;
+}

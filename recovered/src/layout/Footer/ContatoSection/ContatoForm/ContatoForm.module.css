@@ -1,0 +1,15 @@
+.contatoForm {}
+
+.contatoForm h2 {
+    color: var(--cinza-escuro);
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.contatoForm :global(.text-input:not(:last-of-type)) {
+    margin-bottom: 1rem;
+}
+
+.contatoForm :global(.text-input:last-of-type) {
+    margin-bottom: .5rem;
+}

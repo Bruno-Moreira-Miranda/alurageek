@@ -30,7 +30,7 @@ Object.bind(AppRoutes, AppRoutes);
 function RouteHandler() {
     const location = useLocation();
 
-    useEffect(() => scrollTo(0, 0), [location]);
+    useEffect(() => window.scrollTo(0, 0), [location]);
 
     return (
         <Routes>

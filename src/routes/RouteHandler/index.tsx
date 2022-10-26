@@ -27,14 +27,10 @@ class AppRoutes {
 Object.freeze(AppRoutes);
 Object.bind(AppRoutes, AppRoutes);
 
-function scrollToTop() {
-    scrollTo(0, 0);
-}
-
 function RouteHandler() {
     const location = useLocation();
 
-    useEffect(scrollToTop, [location]);
+    useEffect(() => scrollTo(0, 0), [location]);
 
     return (
         <Routes>

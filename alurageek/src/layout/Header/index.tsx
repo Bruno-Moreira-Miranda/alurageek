@@ -9,7 +9,7 @@ import { useIsLogged } from "context/logged";
 
 import { AppRoutes } from "routes/RouteHandler";
 
-import Logo from "components/assets-components/Logo";
+import Logo from "components/Logo";
 import LoginButton from "./LoginButton";
 import SearchBar from "./SearchBar";
 import AdminButton from "./AdminButton";

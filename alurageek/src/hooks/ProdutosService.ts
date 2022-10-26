@@ -1,6 +1,6 @@
 import ProdutosService from "services/produtos-service";
-import useHookfyService from "./utils/hookfyService";
-const hooks = useHookfyService(new ProdutosService());
+import hookfyService from "../utils/hookfyService";
+const hooks = hookfyService(new ProdutosService());
 
 const {
     useObterProduto,

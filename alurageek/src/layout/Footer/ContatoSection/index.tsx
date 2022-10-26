@@ -1,6 +1,6 @@
 import classNames from "classnames";
 
-import Logo from "components/assets-components/Logo";
+import Logo from "components/Logo";
 import ContatoForm from "./ContatoForm";
 import FAQ from "./FAQ";
 

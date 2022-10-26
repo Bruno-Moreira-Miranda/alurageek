@@ -1,4 +1,4 @@
-import { IUserCadastro } from "interfaces/IUsersCadastro";
+import { ICadastro } from "interfaces/IUser";
 
 class UsersCadastroApiConnection {
     static baseUrl = "https://my-json-server.typicode.com/Bruno-Moreira-Miranda/db/cadastros";
@@ -20,7 +20,7 @@ class UsersCadastroApiConnection {
         return response;
     }
 
-    async post(cadastro: IUserCadastro) {
+    async post(cadastro: ICadastro) {
 
         const requestInit: RequestInit = {
             method: "POST",
@@ -37,7 +37,7 @@ class UsersCadastroApiConnection {
         return response;
     }
 
-    async patch(atts: Partial<IUserCadastro>, id: string) {
+    async patch(atts: Partial<ICadastro>, id: string) {
         const requestInit: RequestInit = {
             method: "PATCH",
             mode: "cors",

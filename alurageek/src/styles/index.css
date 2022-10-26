@@ -1,19 +1,19 @@
 /*imports - init*/
 
 /*base*/
-@import "base/__index__.css";
+@import "base/__index.css";
 
 /*components*/
-@import "components/__index__.css";
+@import "components/__index.css";
 
 /*common*/
-@import "common/__index__.css";
+@import "common/__index.css";
 
 /*layout*/
-@import "layout/__index__.css";
+@import "layout/__index.css";
 
 /*utils*/
-@import "utils/__index__.css";
+@import "utils/__index.css";
 
 /*imports - ends*/
 

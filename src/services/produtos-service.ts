@@ -46,8 +46,8 @@ class ProdutosService {
 
     async obterSecaoDeProduto(categoria: string): Promise<IProduto[]> {
         const categoriaFormatada = this.formartarNome(categoria);
-        const response = await this.connection.get(`?categoria=${categoriaFormatada}`);
-        const { data } = await response.json();
+        const response = await this.connection.get(`categoria/${categoriaFormatada}`);
+        const data = await response.json();
 
         return data.map(this.desformartarProduto, this);
     }

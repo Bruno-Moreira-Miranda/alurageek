@@ -1,31 +1,37 @@
 import { ICadastro } from "interfaces/IUser";
-import UsersCadastroApiConnection from "./apis/users-cadastro-api-connection";
+
+import CadastroApiConnection from "./apis/cadastro-api-connection";
+import LogarApiConnection from "./apis/logar-api-connection";
+import VerifyApiConnection from "./apis/verify-api-connection";
 
 class UsersCadastroService {
-    private connection: UsersCadastroApiConnection;
+    private cadastro: CadastroApiConnection;
+    private log: LogarApiConnection;
+    private verify: VerifyApiConnection;
 
     constructor() {
-        this.connection = new UsersCadastroApiConnection();
+        this.cadastro = new CadastroApiConnection();
+        this.log = new LogarApiConnection();
+        this.verify = new VerifyApiConnection();
     }
 
     async cadastrar(cadastro: ICadastro) {
-        const response = await this.connection.post(cadastro);
+        const response = await this.cadastro.post(cadastro);
 
         return response.ok;
     }
 
-    async logar({ email, senha }: ICadastro) {
-        const response = await this.connection.get(`?$email=${email}&senha=${senha}`);
-        const data = await response.json();
-        const valido = Boolean(data[0]);
+    async logar(credenciais: ICadastro) {
+        const response = await this.log.post(credenciais);
+        const logado = await response.json();
 
-        return valido;
+        return logado;
     }
 
     async emUso(email: string) {
-        const response = await this.connection.get(`?email=${email}`);
-        const data = await response.json();
-        const emUso = Boolean(data.length);
+        const response = await this.verify.post(email);
+
+        const emUso = response.json();
 
         return emUso;
     }

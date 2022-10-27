@@ -1,4 +1,4 @@
-import { Server, JSONAPISerializer, Model, hasMany, belongsTo } from "miragejs";
+import { Server, Model, hasMany, belongsTo } from "miragejs";
 import { cadastros, produtos } from "./data";
 
 function handleFind(schema, model, id) {
@@ -25,14 +25,11 @@ function getQueryParams(query) {
 
 function populate(server) {
     produtos.forEach(data => {
-        const copy = Object.assign({}, data);
-
-        const categoriaName = data.categoria;
-        const categoria = server.schema.findOrCreateBy("cat", { name: categoriaName });
-
-        const finalData = Object.assign(copy, { categoria });
-
-        server.create("produto", finalData);
+        const catModel =
+            server.schema.findBy("cat", { name: data.categoria })
+            ??
+            server.create("cat", { name: data.categoria });
+        catModel.createProduto(data)
     });
 
     cadastros.forEach(data => server.create("cadastro", data));
@@ -41,17 +38,11 @@ function populate(server) {
 function serverInit() {
     new Server({
         models: {
-            produto: Model.extend({
-                categoria: belongsTo("cat")
-            }),
+            produto: Model,
             cadastro: Model,
             cat: Model.extend({
                 produtos: hasMany("produto")
             })
-        },
-
-        serializers: {
-            application: JSONAPISerializer
         },
 
         seeds(server) {
@@ -62,7 +53,9 @@ function serverInit() {
             this.urlPrefix = "http://localhost:8080";
 
             this.get("/produtos", (schema, req) => {
-                return schema.all("produto");
+                const produtosModels = schema.all("produto").models;
+                const produtos = produtosModels.map(model => model.attrs);
+                return produtos;
             })
 
             this.get("/produtos/:id", (schema, req) => {
@@ -72,7 +65,7 @@ function serverInit() {
                 const item = handleFind(schema, "produto", id);
                 if (!item) return false;
 
-                return item;
+                return item.attrs;
             })
 
             this.post("/produtos", (schema, req) => {
@@ -119,12 +112,17 @@ function serverInit() {
                 if (!name) return false;
 
                 const item = schema.findBy("cat", { name });
-                if(!item) return false;
+                if (!item) return false;
 
-                return item.produtos;
+                const produtosModels = item.produtos.models;
+                const produtos = produtosModels.map(model => model.attrs);
+
+                console.log(produtos)
+
+                return produtos;
             })
 
-            this.post("/singup", (schema, req) => {
+            this.post("/singin", (schema, req) => {
                 const cadastro = req.requestBody;
                 if (!cadastro) return false;
 
@@ -138,6 +136,13 @@ function serverInit() {
                 if (!credencias) return false;
 
                 return Boolean(schema.findBy("cadastro", credencias));
+            })
+
+            this.post("/verify", (schema, req) => {
+                const dados = req.requestBody;
+                if (!dados) return false;
+
+                return Boolean(schema.findBy("cadastro", { dados }));
             })
         }
     })

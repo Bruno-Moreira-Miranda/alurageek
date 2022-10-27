@@ -118,7 +118,7 @@ function serverInit() {
                 const name = req.params.name;
                 if (!name) return false;
 
-                return schema.findBy("cat", getQueryParams(name)).produtos;
+                return schema.findBy("cat", name).produtos;
             })
 
             this.post("/singup", (schema, req) => {

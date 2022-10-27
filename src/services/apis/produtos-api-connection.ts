@@ -1,7 +1,7 @@
 import { IProduto } from "interfaces/IProduto";
 
 class ProdutosApiConnection {
-    static baseUrl = "https://my-json-server.typicode.com/Bruno-Moreira-Miranda/db/produtos";
+    static baseUrl = "http://localhost:8080/produtos";
 
     async get(query?: string) {
         const requestInit: RequestInit = {

@@ -4,7 +4,7 @@ import { cadastros, produtos } from "./data";
 function handleFind(schema, model, id) {
     const isFindBy = /^\?.+=/.test(id);
 
-    if(isFindBy) {
+    if (isFindBy) {
         return schema.findBy(model, getQueryParams(id));
     }
     else return schema.find(model, id);
@@ -28,9 +28,9 @@ function populate(server) {
         const copy = Object.assign({}, data);
 
         const categoriaName = data.categoria;
-        const catModel = server.create("cat", { name: categoriaName });
+        const categoria = server.schema.findOrCreateBy("cat", { name: categoriaName });
 
-        const finalData = Object.assign(copy, { categoria: catModel });
+        const finalData = Object.assign(copy, { categoria });
 
         server.create("produto", finalData);
     });
@@ -118,7 +118,10 @@ function serverInit() {
                 const name = req.params.name;
                 if (!name) return false;
 
-                return schema.findBy("cat", name).produtos;
+                const item = schema.findBy("cat", { name });
+                if(!item) return false;
+
+                return item.produtos;
             })
 
             this.post("/singup", (schema, req) => {

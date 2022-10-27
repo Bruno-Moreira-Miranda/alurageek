@@ -46,7 +46,7 @@ class ProdutosService {
 
     async obterSecaoDeProduto(categoria: string): Promise<IProduto[]> {
         const categoriaFormatada = this.formartarNome(categoria);
-        const response = await this.connection.get(`?categoria=${categoriaFormatada}`);
+        const response = await this.connection.get(`categoria/${categoriaFormatada}`);
         const data = await response.json();
 
         return data.map(this.desformartarProduto, this);
@@ -57,6 +57,20 @@ class ProdutosService {
         const response = await this.connection.patch(attsFormatada, id);
 
         return response.ok;
+    }
+
+    async jaExisteProp(searchObj: Partial<Record<"categoria" | "nome", string>>) {
+        const entrys = Object.entries(searchObj);
+        const entrysExiste = await Promise.all(
+            entrys.map(async ([prop, value]) => {
+                const valueFormatado = this.formartarNome(value);
+                const response = await this.connection.get(`?${prop}=${valueFormatado}`);
+                const data = await response.json();
+                const existe = Boolean(data.length);
+                return [prop, existe];
+            }));
+        const resultado = Object.fromEntries(entrysExiste);
+        return resultado;
     }
 
     private formartarNome(nome: string) {
@@ -84,20 +98,6 @@ class ProdutosService {
         copy.nome &&= this.desformartarNome(copy.nome);
 
         return copy;
-    }
-
-    async jaExisteProp(searchObj: Partial<Record<"categoria" | "nome", string>>) {
-        const entrys = Object.entries(searchObj);
-        const entrysExiste = await Promise.all(
-            entrys.map(async ([prop, value]) => {
-                const valueFormatado = this.formartarNome(value);
-                const response = await this.connection.get(`?${prop}=${valueFormatado}`);
-                const data = await response.json();
-                const existe = Boolean(data.length);
-                return [prop, existe];
-            }));
-        const resultado = Object.fromEntries(entrysExiste);
-        return resultado;
     }
 }
 

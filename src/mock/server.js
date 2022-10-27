@@ -1,6 +1,28 @@
 import { Server, JSONAPISerializer, Model, hasMany, belongsTo } from "miragejs";
 import { cadastros, produtos } from "./data";
 
+function handleFind(schema, model, id) {
+    const isFindBy = /^\?.+=/.test(id);
+
+    if(isFindBy) {
+        return schema.findBy(model, getQueryParams(id));
+    }
+    else return schema.find(model, id);
+}
+
+function getQueryParams(query) {
+    return query.substring(1, query.length)
+        .split("&")
+        .reduce((queryObj, stringEntry) => {
+            const entryObj = [stringEntry.split("=")];
+            const obj = Object.fromEntries(entryObj);
+
+            Object.assign(query, obj);
+
+            return queryObj;
+        }, {});
+}
+
 function populate(server) {
     produtos.forEach(data => {
         const copy = Object.assign({}, data);
@@ -37,69 +59,71 @@ function serverInit() {
         },
 
         routes() {
-            this.get("/produto", (schema, req) => {
+            this.urlPrefix = "http://localhost:8080";
+
+            this.get("/produtos", (schema, req) => {
                 return schema.all("produto");
             })
 
-            this.get("/produto/:id", (schema, req) => {
+            this.get("/produtos/:id", (schema, req) => {
                 const id = req.params.id;
-                if(!id) return false;
+                if (!id) return false;
 
-                const item = schema.find("produto", id);
-                if(!item) return false;
+                const item = handleFind(schema, "produto", id);
+                if (!item) return false;
 
                 return item;
             })
 
-            this.post("/produto", (schema, req) => {
+            this.post("/produtos", (schema, req) => {
                 const produtoInfo = req.requestBody;
-                
-                if(!produtoInfo) return false;
 
-               return schema.create("produto", produtoInfo) ? true : false;
+                if (!produtoInfo) return false;
+
+                return schema.create("produto", produtoInfo) ? true : false;
             })
 
-            this.patch("/produto/:id", (schema, req) => {
+            this.patch("/produtos/:id", (schema, req) => {
                 const id = req.params.id;
-                if(!id) return false;
+                if (!id) return false;
 
                 const atts = req.requestBody;
-                if(!atts) return false;
+                if (!atts) return false;
 
-                const item = schema.find("produto", id);
-                if(!item) return false;
+                const item = handleFind(schema, "produto", id);
+                if (!item) return false;
 
                 item.update(atts);
 
                 return true;
             })
 
-            this.delete("/produto/:id", (schema, req) => {
+            this.delete("/produtos/:id", (schema, req) => {
                 const id = req.params.id;
-                if(!id) return false;
+                if (!id) return false;
 
-                const item = schema.find("produto", id);
-                if(!item) return false;
+                const item = handleFind(schema, "produto", id);
+                if (!item) return false;
 
-                 item.destroy();
+                item.destroy();
 
-                return true; 
+                return true;
             })
 
-            this.get("/produto/categoria", (schema, req) => {
+            this.get("/produtos/categoria", (schema, req) => {
                 return schema.all("cat");
             })
 
-            this.get("produto/categoria/:name", (schema, req) => {
+            this.get("produtos/categoria/:name", (schema, req) => {
                 const name = req.params.name;
-                if(!name) return false;
+                if (!name) return false;
 
-                return schema.findBy("cat", name);
+                return schema.findBy("cat", getQueryParams(name)).produtos;
             })
 
             this.post("/singup", (schema, req) => {
                 const cadastro = req.requestBody;
-                if(!cadastro) return false;
+                if (!cadastro) return false;
 
                 schema.create("cadastro", cadastro);
 
@@ -108,7 +132,7 @@ function serverInit() {
 
             this.post("/login", (schema, req) => {
                 const credencias = req.requestBody;
-                if(!credencias) return false;
+                if (!credencias) return false;
 
                 return Boolean(schema.findBy("cadastro", credencias));
             })

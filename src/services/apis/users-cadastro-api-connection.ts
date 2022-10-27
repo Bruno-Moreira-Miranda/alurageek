@@ -1,7 +1,7 @@
 import { ICadastro } from "interfaces/IUser";
 
 class UsersCadastroApiConnection {
-    static baseUrl = "https://my-json-server.typicode.com/Bruno-Moreira-Miranda/db/cadastros";
+    static baseUrl = "http://localhost:8080/cadastro";
 
     async get(query?: string) {
         const requestInit: RequestInit = {

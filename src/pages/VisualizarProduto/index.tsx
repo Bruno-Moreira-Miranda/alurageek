@@ -28,7 +28,8 @@ function VizualizarProdutoPage() {
         })();
     }, [id]);
 
-    return !produto ? null: (
+    if(!produto) return null;
+    return (
         <>
             <Header />
             <main className={styles.first}>

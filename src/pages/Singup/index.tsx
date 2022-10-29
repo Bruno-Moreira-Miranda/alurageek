@@ -64,7 +64,8 @@ function SingupPage() {
         const { email, senha, confirmarSenha } = inputs;
 
         const service = new UsersCadastroService();
-        const usado = await service.emUso(email.value);
+        const credencias = {email: email.value, senha: senha.value};
+        const usado = await service.emUso(credencias);
         const diferente = senha.value !== confirmarSenha.value;
 
         if (usado) { email.setCustomValidity("O email já está em uso"); }

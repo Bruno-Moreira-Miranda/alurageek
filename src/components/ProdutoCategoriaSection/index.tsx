@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-import { useObterSecaoDeProduto } from "hooks/ProdutosService";
-
 import { AppRoutes } from "routes/RouteHandler";
-import { IProdutoArr } from "interfaces/IProduto";
+import { ICategoria } from "interfaces/IProduto";
 
 import ProdutoList from "components/ProdutoList";
 import ProdutoPreview from "components/ProdutoPreview";
@@ -13,29 +11,21 @@ import SetaAzulDireita from "components/assets-components/SetaAzulDireita";
 
 import styles from "./ProdutoCategoriaSection.module.css";
 
-interface Props {
+interface Props
+    extends Omit<ICategoria, "id"> {
     className?: string;
-    categoria: string;
 }
 
-function ProdutoCategoriaSection({ categoria, className }: Props) {
+function ProdutoCategoriaSection({ name, produtos, className }: Props) {
 
-    const [produtos, setProdutos] = useState<IProdutoArr>();
-
-    useObterSecaoDeProduto((service: any) => {
-        (async () => {
-            setProdutos(await service(categoria));
-        })();
-    }, [categoria]);
-
-    return !produtos? null: (
+    return (
         <section className={className}>
             <div className={classNames(styles.row_1, "row", "row--center-v", "row--split-h")}>
                 <h2 className="title-1">
-                    {categoria}
+                    {name}
                 </h2>
                 <div className={styles.link}>
-                    <Link className="link" to={`${AppRoutes.verCategoria}/${categoria}`}>
+                    <Link className="link" to={`${AppRoutes.verCategoria}/${name}`}>
                         Ver tudo
                     </Link>
                     <SetaAzulDireita className={styles.seta} />

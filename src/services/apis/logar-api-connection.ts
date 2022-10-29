@@ -1,7 +1,7 @@
 import { ICadastro } from "interfaces/IUser";
 
 class LogarApiConnection {
-    static baseUrl = "http://localhost:8080/singin"; 
+    static baseUrl = "http://localhost:8080/login"; 
 
     async post(credenciais: ICadastro) {
         const RequestInit: RequestInit = {

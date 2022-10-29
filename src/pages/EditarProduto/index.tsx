@@ -52,7 +52,8 @@ function EditarProdutoPage() {
         }
     }
 
-    return !produto ? null : (
+    if(!produto) return null;
+    return (
         <>
             <Header />
             <main className="container padding-section-v-1 produto-form-page-padding">

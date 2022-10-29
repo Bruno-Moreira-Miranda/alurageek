@@ -54,7 +54,8 @@ function AdministracaoPage() {
         );
     };
 
-    return !currentProdutos ? null : (
+    if(!currentProdutos) return null;
+    return (
         <>
             <Header />
             <main className={classNames(styles.administracao, "container", "padding-section-v-1")}>

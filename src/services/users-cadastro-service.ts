@@ -28,7 +28,7 @@ class UsersCadastroService {
         return logado;
     }
 
-    async emUso(email: string) {
+    async emUso(email: ICadastro) {
         const response = await this.verify.post(email);
 
         const emUso = response.json();

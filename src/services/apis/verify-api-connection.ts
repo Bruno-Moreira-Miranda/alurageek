@@ -3,7 +3,7 @@ import { ICadastro } from "interfaces/IUser";
 class VerifyApiConnection {
     static baseUrl = "http://localhost:8080/verify"
 
-    async post(credenciais: ICadastro["email"]) {
+    async post(credenciais: ICadastro) {
         const RequestInit: RequestInit = {
             method: "POST",
             body: JSON.stringify(credenciais),

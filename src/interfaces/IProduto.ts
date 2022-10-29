@@ -9,4 +9,12 @@ interface IProduto {
 
 type IProdutoArr = Array<IProduto>; 
 
-export type { IProduto, IProdutoArr }
+interface ICategoria {
+    name: string
+    produtos: IProdutoArr
+    id: string
+}
+
+type ICategoriaArr = Array<ICategoria>
+
+export type { IProduto, IProdutoArr, ICategoria, ICategoriaArr }

@@ -18,11 +18,12 @@ function ResultadosPage() {
 
     useBuscarProdutos((service: any) => {
         (async () => {
-            setProdutos(await service(`?nome_like=^${query}`));
+            setProdutos(await service(query));
         })();
     }, [query]);
 
-    return !produtos ? null : (
+    if(!produtos) return null;
+    return (
         <>
             <Header />
             <main className="container padding-section-v-1">

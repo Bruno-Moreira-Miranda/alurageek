@@ -1,11 +1,19 @@
-import { Server, Model, hasMany, belongsTo } from "miragejs";
+import { Server, Model, hasMany, RestSerializer, belongsTo } from "miragejs";
 import { cadastros, produtos } from "./data";
 
 function handleFind(schema, model, id) {
-    const isFindBy = /^\?.+=/.test(id);
+    const isFindByProp = /^_.+=/.test(id);
 
-    if (isFindBy) {
-        return schema.findBy(model, getQueryParams(id));
+    if (isFindByProp) {
+        const { value, flag } = getQueryParams(id);
+        const isSearchLike = flag === "_like";
+        if (isSearchLike) return schema.where(model, item => {
+            console.log(item)
+            const entry = Object.entries(value);
+            const match = entry.every(([key, value]) => new RegExp(`^${value}`).test(item[key]));
+            return match;
+        });
+        return schema.findBy(model, value);
     }
     else return schema.find(model, id);
 }
@@ -13,14 +21,22 @@ function handleFind(schema, model, id) {
 function getQueryParams(query) {
     return query.substring(1, query.length)
         .split("&")
-        .reduce((queryObj, stringEntry) => {
-            const entryObj = [stringEntry.split("=")];
-            const obj = Object.fromEntries(entryObj);
+        .reduce((queryObj, string) => {
+            const [flaglessString, flag] = removeFlag(string);
+            const keyValueEntry = [flaglessString.split("=")];
+            const obj = Object.fromEntries(keyValueEntry);
 
-            Object.assign(query, obj);
+            queryObj.value = obj;
+            queryObj.flag = flag;
 
             return queryObj;
-        }, {});
+        }, { value: null, flag: null });
+}
+
+function removeFlag(string) {
+    const match = string.match(/(?<!^)_.+(?==)/, "");
+    const flag = match ? match[0] : null;
+    return [string.replace(flag, ""), flag];
 }
 
 function populate(server) {
@@ -38,7 +54,9 @@ function populate(server) {
 function serverInit() {
     new Server({
         models: {
-            produto: Model,
+            produto: Model.extend({
+                categoriaOwner: belongsTo("cat")
+            }),
             cadastro: Model,
             cat: Model.extend({
                 produtos: hasMany("produto")
@@ -49,14 +67,17 @@ function serverInit() {
             populate(server);
         },
 
-        routes() {
-            this.urlPrefix = "http://localhost:8080";
-
-            this.get("/produtos", (schema, req) => {
-                const produtosModels = schema.all("produto").models;
-                const produtos = produtosModels.map(model => model.attrs);
-                return produtos;
+        serializers: {
+            application: RestSerializer.extend({
+                root: false,
+                include: ["produtos"],
+                embed: true,
+                serializeIds: "never"
             })
+        },
+
+        routes() {
+            this.urlPrefix = "http://localhost:8080"
 
             this.get("/produtos/:id", (schema, req) => {
                 const id = req.params.id;
@@ -65,26 +86,43 @@ function serverInit() {
                 const item = handleFind(schema, "produto", id);
                 if (!item) return false;
 
-                return item.attrs;
+                return item;
+            })
+
+            this.get("/produtos", (schema, req) => {
+                const produtosModels = schema.all("produto").models;
+
+                return produtosModels;
             })
 
             this.post("/produtos", (schema, req) => {
-                const produtoInfo = req.requestBody;
-
+                const produtoInfo = JSON.parse(req.requestBody);
                 if (!produtoInfo) return false;
 
-                return schema.create("produto", produtoInfo) ? true : false;
+                const { categoria } = produtoInfo;
+                return schema
+                    .findOrCreateBy("cat", { name: categoria })
+                    .createProduto(produtoInfo) ? true : false;
             })
 
             this.patch("/produtos/:id", (schema, req) => {
                 const id = req.params.id;
                 if (!id) return false;
 
-                const atts = req.requestBody;
+                const atts = JSON.parse(req.requestBody);
                 if (!atts) return false;
 
                 const item = handleFind(schema, "produto", id);
                 if (!item) return false;
+
+                if (atts.categoria !== item.categoria) {
+                    const oldOwner = item.categoriaOwner;
+                    item.categoriaOwner = schema.findOrCreateBy("cat", { name: atts.categoria });
+
+                    item.save();
+
+                    if (oldOwner.produtos.length === 0) oldOwner.destroy();
+                }
 
                 item.update(atts);
 
@@ -97,14 +135,12 @@ function serverInit() {
 
                 const item = handleFind(schema, "produto", id);
                 if (!item) return false;
+                const { categoriaOwner } = item;
 
                 item.destroy();
+                if (categoriaOwner.produtos.length === 0) categoriaOwner.destroy();
 
                 return true;
-            })
-
-            this.get("/produtos/categoria", (schema, req) => {
-                return schema.all("cat");
             })
 
             this.get("produtos/categoria/:name", (schema, req) => {
@@ -114,35 +150,34 @@ function serverInit() {
                 const item = schema.findBy("cat", { name });
                 if (!item) return false;
 
-                const produtosModels = item.produtos.models;
-                const produtos = produtosModels.map(model => model.attrs);
+                return item;
+            })
 
-                console.log(produtos)
-
-                return produtos;
+            this.get("/produtos/categoria", (schema, req) => {
+                console.log(this.db)
+                console.log(schema.all("cat"));
+                return schema.all("cat");
             })
 
             this.post("/singin", (schema, req) => {
-                const cadastro = req.requestBody;
+                const cadastro = JSON.parse(req.requestBody);
                 if (!cadastro) return false;
 
-                schema.create("cadastro", cadastro);
-
-                return true;
+                return Boolean(schema.create("cadastro", cadastro));
             })
 
             this.post("/login", (schema, req) => {
-                const credencias = req.requestBody;
+                const credencias = JSON.parse(req.requestBody);
                 if (!credencias) return false;
 
                 return Boolean(schema.findBy("cadastro", credencias));
             })
 
             this.post("/verify", (schema, req) => {
-                const dados = req.requestBody;
+                const dados = JSON.parse(req.requestBody);
                 if (!dados) return false;
 
-                return Boolean(schema.findBy("cadastro", { dados }));
+                return Boolean(schema.findBy("cadastro", { ...dados }));
             })
         }
     })

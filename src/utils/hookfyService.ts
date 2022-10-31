@@ -7,10 +7,7 @@ function hookfyService(service: any) {
         .filter(name => name !== "constructor");
     const entry = propsKey.map(name => [name, service[name]]);
 
-    const isAsyncFunc = (p: any) => p.constructor.name === "AsyncFunction";
-    const asyncFuncOnlyEntry = entry.filter(([, func]) => isAsyncFunc(func)); 
-
-    const prefixedFuncsEntry = asyncFuncOnlyEntry.map(([name, func]) => {
+    const prefixedFuncsEntry = entry.map(([name, func]) => {
         const camelName = name.replace(/^./, name.charAt(0).toUpperCase());
         return [`use${camelName}`, func];
     });

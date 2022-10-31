@@ -6,7 +6,7 @@ import Footer from "layout/Footer";
 
 import Header from "layout/Header";
 
-import ProdutoForm from "components/ProdutoForm";
+import ProdutoForm from "feature/produto/ProdutoForm";
 
 function AdicionarProdutoPage() {
 

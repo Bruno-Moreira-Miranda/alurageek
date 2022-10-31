@@ -5,8 +5,8 @@ import classNames from "classnames";
 import { AppRoutes } from "routes/RouteHandler";
 import { ICategoria } from "interfaces/IProduto";
 
-import ProdutoList from "components/ProdutoList";
-import ProdutoPreview from "components/ProdutoPreview";
+import ProdutoList from "feature/produto/ProdutoList";
+import ProdutoPreview from "feature/produto/ProdutoPreview";
 import SetaAzulDireita from "components/assets-components/SetaAzulDireita";
 
 import styles from "./ProdutoCategoriaSection.module.css";

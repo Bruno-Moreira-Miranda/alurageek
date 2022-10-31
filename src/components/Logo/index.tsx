@@ -2,8 +2,8 @@ import { HTMLAttributes } from "react";
 import classNames from "classnames";
 
 import iconPath from "assets/images/icon.png";
-import logoChunk1 from "assets/images/logo-chunk-1.png";
-import logoChunk2 from "assets/images/logo-chunk-2.png";
+import logoChunk1 from "assets/images/logo/logo-chunk-1.png";
+import logoChunk2 from "assets/images/logo/logo-chunk-2.png";
 
 import styles from "./Logo.module.css";
 

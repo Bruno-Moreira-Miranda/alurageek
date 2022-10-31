@@ -8,7 +8,7 @@ import { useObterProduto } from "hooks/ProdutosService";
 
 import ProdutosService from "services/produtos-service";
 
-import ProdutoForm from "components/ProdutoForm";
+import ProdutoForm from "feature/produto/ProdutoForm";
 import Footer from "layout/Footer";
 import Header from "layout/Header";
 

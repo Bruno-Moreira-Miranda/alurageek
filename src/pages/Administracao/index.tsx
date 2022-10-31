@@ -10,10 +10,10 @@ import { IProduto, IProdutoArr } from "interfaces/IProduto";
 import { AppRoutes } from "routes/RouteHandler";
 import ProdutosService from "services/produtos-service";
 
-import ProdutoList from "components/ProdutoList";
+import ProdutoList from "feature/produto/ProdutoList";
 import Footer from "layout/Footer";
 import Header from "layout/Header";
-import ProdutoAdminMode from "components/ProdutoAdminMode";
+import ProdutoAdminMode from "feature/produto/ProdutoAdminMode";
 
 import styles from "./Administracao.module.css";
 

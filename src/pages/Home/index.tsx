@@ -5,7 +5,7 @@ import { ICategoriaArr } from "interfaces/IProduto";
 import useTitle from "hooks/useTitle";
 import { useObterSecaoDeProduto } from "hooks/ProdutosService";
 
-import ProdutoCategoriaSection from "components/ProdutoCategoriaSection";
+import ProdutoCategoriaSection from "feature/produto/ProdutoCategoriaSection";
 
 import Banner from "layout/Banner";
 import Footer from "layout/Footer";

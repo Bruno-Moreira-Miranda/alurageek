@@ -8,9 +8,8 @@ function handleFind(schema, model, id) {
         const { value, flag } = getQueryParams(id);
         const isSearchLike = flag === "_like";
         if (isSearchLike) return schema.where(model, item => {
-            console.log(item)
             const entry = Object.entries(value);
-            const match = entry.every(([key, value]) => new RegExp(`^${value}`).test(item[key]));
+            const match = entry.every(([key, value]) => new RegExp(`^${value}`, "i").test(item[key]));
             return match;
         });
         return schema.findBy(model, value);
@@ -154,8 +153,6 @@ function serverInit() {
             })
 
             this.get("/produtos/categoria", (schema, req) => {
-                console.log(this.db)
-                console.log(schema.all("cat"));
                 return schema.all("cat");
             })
 

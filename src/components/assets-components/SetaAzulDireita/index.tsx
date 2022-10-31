@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import classNames from "classnames";
 
-import { ReactComponent as Svg } from "assets/images/seta-azul-direita.svg";
+import { ReactComponent as Svg } from "assets/images/icon/seta-azul-direita.svg";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 

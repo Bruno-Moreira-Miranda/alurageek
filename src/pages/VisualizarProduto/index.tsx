@@ -8,7 +8,7 @@ import { useObterProduto } from "hooks/ProdutosService";
 import { IProduto } from "interfaces/IProduto";
 import { currencyFormat } from "utils/currencyFormat";
 
-import ProdutoSimilaresSection from "components/ProdutoSimilaresSection";
+import ProdutoSimilaresSection from "feature/produto/ProdutoSimilaresSection";
 import Footer from "layout/Footer";
 import Header from "layout/Header";
 
@@ -33,9 +33,9 @@ function VizualizarProdutoPage() {
         <>
             <Header />
             <main className={styles.first}>
-                <article className={classNames(styles.produtoVizualizacao, "column", "gap-rw-1", "mb-2")}>
+                <article className={classNames(styles.produtoVizualizacao, "column", "gap-rw-1", "mb-2", "container")}>
                     <div className={classNames(styles.produtoVizualizacao__img, "img-container")}>
-                        <img src={produto.imgUrl ?? "https://picsum.photos/200/300"} alt="" />
+                        <img src={produto.imgUrl} alt="" />
                     </div>
                     <div className="container column gap-rw-05">
                         <h2 className={styles.produtoVizualizacao__nome}>

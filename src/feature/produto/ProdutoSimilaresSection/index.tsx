@@ -2,8 +2,8 @@ import { HTMLAttributes, useState } from "react";
 
 import { ICategoria, IProduto, IProdutoArr } from "interfaces/IProduto";
 
-import ProdutoList from "components/ProdutoList";
-import ProdutoPreview from "components/ProdutoPreview";
+import ProdutoList from "feature/produto/ProdutoList";
+import ProdutoPreview from "feature/produto/ProdutoPreview";
 import { useObterSecaoDeProduto } from "hooks/ProdutosService";
 
 interface Props

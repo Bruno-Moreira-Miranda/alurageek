@@ -6,8 +6,8 @@ import { ICategoria } from "interfaces/IProduto";
 import useTitle from "hooks/useTitle";
 import { useObterSecaoDeProduto } from "hooks/ProdutosService";
 
-import ProdutoList from "components/ProdutoList";
-import ProdutoPreview from "components/ProdutoPreview";
+import ProdutoList from "feature/produto/ProdutoList";
+import ProdutoPreview from "feature/produto/ProdutoPreview";
 import Footer from "layout/Footer";
 import Header from "layout/Header";
 

@@ -3,20 +3,18 @@ import classNames from "classnames";
 
 import { AppRoutes } from "routes/RouteHandler";
 import { currencyFormat } from "utils/currencyFormat";
+import { IProduto } from "interfaces/IProduto";
 
-interface Props {
-    imgPath: string;
-    nome: string;
-    preco: string;
-    id: string;
+interface Props
+    extends IProduto {
     className?: string;
 }
 
-function ProdutoPreview({ imgPath, nome, preco, id, className }: Props) {
+function ProdutoPreview({ imgUrl, nome, preco, id, className }: Props) {
     return (
         <article className={classNames("produto-card", className)}>
             <div className="img-container">
-                <img src={imgPath} alt="" />
+                <img src={imgUrl} alt="" />
             </div>
             <h2 className="produto-card__nome">
                 {nome}

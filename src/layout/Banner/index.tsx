@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react";
-
-import Button from "components/Button";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 import styles from "./Banner.module.css";
+import { AppRoutes } from "routes/RouteHandler";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 
@@ -15,9 +15,9 @@ function Banner({ className, ...rest }: Props) {
             {...rest}>
             <h2>Dezembro Promocional</h2>
             <p>Produtos selecionados com 33% de desconto</p>
-            <Button className="button--padding-1">
+            <Link to={`${AppRoutes.verCategoria}/console`} className="button button--default button--padding-1">
                 Ver Consoles
-            </Button>
+            </Link>
         </aside>
     );
 }

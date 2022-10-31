@@ -10,13 +10,15 @@ import { AppRoutes } from "routes/RouteHandler";
 
 import styles from "./SearchBar.module.css";
 
-type Props = Pick<HTMLAttributes<HTMLFormElement>, keyof HTMLAttributes<HTMLDivElement>> ;
+interface Props extends Pick<HTMLAttributes<HTMLFormElement>, keyof HTMLAttributes<HTMLDivElement>> {
+    onSearch: () => unknown;
+}
 
 const inputNames = {
     search: "header-search-bar-input"
 };
 
-function $SearchBar({ className, ...rest }: Props, ref: any) {
+function $SearchBar({ className, onSearch, ...rest }: Props, ref: any) {
 
     const navegador = useNavigate();
 
@@ -37,6 +39,7 @@ function $SearchBar({ className, ...rest }: Props, ref: any) {
 
         const query = searchInput.value.trim();
 
+        onSearch()
         navegador(`${AppRoutes.resultados}/${query}`);
     }
 

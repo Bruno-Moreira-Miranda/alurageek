@@ -33,7 +33,7 @@ function VizualizarProdutoPage() {
         <>
             <Header />
             <main className={styles.first}>
-                <article className={classNames(styles.produtoVizualizacao, "column", "gap-rw-1", "mb-2", "container")}>
+                <article className={classNames(styles.produtoVizualizacao, "column", "gap-rw-1", "mb-2")}>
                     <div className={classNames(styles.produtoVizualizacao__img, "img-container")}>
                         <img src={produto.imgUrl} alt="" />
                     </div>

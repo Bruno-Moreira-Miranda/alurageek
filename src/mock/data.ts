@@ -20,48 +20,51 @@ import img16 from "assets/images/produtos/img-16.png";
 import img17 from "assets/images/produtos/img-17.png";
 import img18 from "assets/images/produtos/img-18.png";
 
+const { origin } = window.location;
+function formPath(path: string) { return origin + path }
+
 const produtos: Array<Omit<IProduto, "id">> = [
     {
         nome: "star_wars_1",
         categoria: "star_wars",
         descricao: "foo",
         preco: "15",
-        imgUrl: img1,
+        imgUrl: formPath(img1),
     },
     {
         nome: "star_wars_2",
         categoria: "star_wars",
         descricao: "foo",
         preco: "20",
-        imgUrl: img2,
+        imgUrl: formPath(img2),
     },
     {
         nome: "star_wars_3",
         categoria: "star_wars",
         descricao: "foo",
         preco: "17.50",
-        imgUrl: img3,
+        imgUrl: formPath(img3),
     },
     {
         nome: "star_wars_4",
         categoria: "star_wars",
         descricao: "foo",
         preco: "14.75",
-        imgUrl: img4,
+        imgUrl: formPath(img4),
     },
     {
         nome: "star_wars_5",
         categoria: "star_wars",
         descricao: "foo",
         preco: "16",
-        imgUrl: img5,
+        imgUrl: formPath(img5),
     },
     {
         nome: "star_wars_6",
         categoria: "star_wars",
         descricao: "foo",
         preco: "24",
-        imgUrl: img18,
+        imgUrl: formPath(img18),
     },
 
     {
@@ -69,42 +72,42 @@ const produtos: Array<Omit<IProduto, "id">> = [
         categoria: "console",
         descricao: "foo",
         preco: "40",
-        imgUrl: img6
+        imgUrl: formPath(img6)
     },
     {
         nome: "console_2",
         categoria: "console",
         descricao: "foo",
         preco: "2000",
-        imgUrl: img7
+        imgUrl: formPath(img7)
     },
     {
         nome: "console_1",
         categoria: "console",
         descricao: "foo",
         preco: "2000",
-        imgUrl: img8
+        imgUrl: formPath(img8)
     },
     {
         nome: "console_3",
         categoria: "console",
         descricao: "foo",
         preco: "120",
-        imgUrl: img9
+        imgUrl: formPath(img9)
     },
     {
         nome: "console_4",
         categoria: "console",
         descricao: "foo",
         preco: "2000",
-        imgUrl: img10
+        imgUrl: formPath(img10)
     },
     {
         nome: "console_5",
         categoria: "console",
         descricao: "foo",
         preco: "290",
-        imgUrl: img11
+        imgUrl: formPath(img11)
     },
 
 
@@ -113,42 +116,42 @@ const produtos: Array<Omit<IProduto, "id">> = [
         categoria: "outro",
         descricao: "foo",
         preco: "50",
-        imgUrl: img12
+        imgUrl: formPath(img12)
     },
     {
         nome: "outro_2",
         categoria: "outro",
         descricao: "foo",
         preco: "50",
-        imgUrl: img13
+        imgUrl: formPath(img13)
     },
     {
         nome: "outro_3",
         categoria: "outro",
         descricao: "foo",
         preco: "50",
-        imgUrl: img14
+        imgUrl: formPath(img14)
     },
     {
         nome: "outro_4",
         categoria: "outro",
         descricao: "foo",
         preco: "50",
-        imgUrl: img15
+        imgUrl: formPath(img15)
     },
     {
         nome: "outro_5",
         categoria: "outro",
         descricao: "foo",
         preco: "50",
-        imgUrl: img16
+        imgUrl: formPath(img16)
     },
     {
         nome: "outro_6",
         categoria: "outro",
         descricao: "foo",
         preco: "50",
-        imgUrl: img17
+        imgUrl: formPath(img17)
     },
 ];
 

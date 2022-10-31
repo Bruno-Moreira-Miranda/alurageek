@@ -28,13 +28,14 @@ function Header() {
     const isInHome = location.pathname === AppRoutes.home;
 
     useEffect(() => {
-        searchBarRef.current?.focus();
-    }, [searchMode]);
-
-    useEffect(() => {
         searchMode 
             ? headerRef.current?.classList.add(styles.mobileSearchBarMode)
             : headerRef.current?.classList.remove(styles.mobileSearchBarMode);
+    }, [searchMode]);
+
+    useEffect(() => {
+        if(!searchMode) return;
+        searchBarRef.current?.focus();
     }, [searchMode]);
 
     function needed(event: React.MouseEvent) {
@@ -70,7 +71,7 @@ function Header() {
                 }
             </button>
             <div className={classNames(styles.searchBarContainer)}>
-                <SearchBar ref={searchBarRef} />
+                <SearchBar ref={searchBarRef} onSearch={() => setSearchMode(bool => !bool)} />
             </div>
             {logged ? <AdminButton /> : <LoginButton />}
         </header>

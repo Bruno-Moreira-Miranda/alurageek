@@ -1,18 +1,36 @@
 {
   "files": {
-    "main.css": "/alurageek/static/css/main.30552301.css",
-    "main.js": "/alurageek/static/js/main.c868ea51.js",
+    "main.css": "/alurageek/static/css/main.3c01189b.css",
+    "main.js": "/alurageek/static/js/main.3763e20f.js",
     "static/media/banner.png": "/alurageek/static/media/banner.86b79c2c708b801a2276.png",
+    "static/media/img-12.png": "/alurageek/static/media/img-12.8bce8d0739a9feb97cc3.png",
+    "static/media/img-16.png": "/alurageek/static/media/img-16.c63ec7fac8941428994c.png",
+    "static/media/img-14.png": "/alurageek/static/media/img-14.4209524b2427e2ba97ba.png",
+    "static/media/img-17.png": "/alurageek/static/media/img-17.8fcd160f69499d9407d9.png",
+    "static/media/img-4.png": "/alurageek/static/media/img-4.f0b5cc403b0decb9acac.png",
+    "static/media/img-5.png": "/alurageek/static/media/img-5.3332a9626a62a202d895.png",
+    "static/media/img-13.png": "/alurageek/static/media/img-13.4cdd54f652d43ba3e637.png",
+    "static/media/img-2.png": "/alurageek/static/media/img-2.ec72f49806e22bc36294.png",
+    "static/media/img-3.png": "/alurageek/static/media/img-3.2e701cc9a2808eb2d06a.png",
+    "static/media/img-1.png": "/alurageek/static/media/img-1.7a72685c64eb9fefd041.png",
+    "static/media/img-11.png": "/alurageek/static/media/img-11.08a44591357bd3a6a2f3.png",
+    "static/media/img-9.png": "/alurageek/static/media/img-9.08fcd64666ef28aaddd9.png",
+    "static/media/img-8.png": "/alurageek/static/media/img-8.5198008c6dbda1a5b3bd.png",
+    "static/media/img-15.png": "/alurageek/static/media/img-15.130d52e55f60670f22e3.png",
+    "static/media/img-7.png": "/alurageek/static/media/img-7.6a2175e6f1102166e70f.png",
+    "static/media/img-18.png": "/alurageek/static/media/img-18.f9e47c3e1a6f6c4abb93.png",
+    "static/media/img-10.png": "/alurageek/static/media/img-10.634102facc5930ce36e1.png",
+    "static/media/img-6.png": "/alurageek/static/media/img-6.39f4a92ce5d33d19484d.png",
     "static/media/lupa.svg": "/alurageek/static/media/lupa.ab0532c73a5dfa4ec6c37fb245d03708.svg",
     "index.html": "/alurageek/index.html",
     "static/media/lapis.svg": "/alurageek/static/media/lapis.ffe9ec6d300316caac811ff43a80b3bd.svg",
     "static/media/seta-azul-direita.svg": "/alurageek/static/media/seta-azul-direita.792c48e73dcfd78686a2c0384ad7c31e.svg",
     "static/media/lixo.svg": "/alurageek/static/media/lixo.30eda704d671cda14b6d9f9dfa397f3a.svg",
-    "main.30552301.css.map": "/alurageek/static/css/main.30552301.css.map",
-    "main.c868ea51.js.map": "/alurageek/static/js/main.c868ea51.js.map"
+    "main.3c01189b.css.map": "/alurageek/static/css/main.3c01189b.css.map",
+    "main.3763e20f.js.map": "/alurageek/static/js/main.3763e20f.js.map"
   },
   "entrypoints": [
-    "static/css/main.30552301.css",
-    "static/js/main.c868ea51.js"
+    "static/css/main.3c01189b.css",
+    "static/js/main.3763e20f.js"
   ]
 }
